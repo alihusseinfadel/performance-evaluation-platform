@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "associate_id": 2,
+    "year_id": 1,
+    "self_score": null,
+    "supervisor_score": 70,
+    "self_notes": "",
+    "supervisor_notes": "",
+    "status": "finalized"
+  },
+  {
+    "id": 2,
+    "associate_id": 3,
+    "year_id": 1,
+    "self_score": null,
+    "supervisor_score": 80,
+    "self_notes": "",
+    "supervisor_notes": "",
+    "status": "finalized"
+  },
+  {
+    "id": 3,
+    "associate_id": 3,
+    "year_id": 2,
+    "self_score": 20,
+    "supervisor_score": null,
+    "self_notes": "",
+    "supervisor_notes": "",
+    "status": "self_done"
+  }
+]
