@@ -899,8 +899,8 @@ with st.sidebar:
 
     st.markdown("""
     <div class="sb-credits">
-        <div class="sb-credits-title">أ.م. علي حسين فاضل — استاذ مساعد</div>
-        <div class="sb-credits-title" style="margin-top:6px;">ناهدة موسى اسماعيل عباس الرديني — موظفة</div>
+        <div class="sb-credits-title">استاذ مساعد علي حسين فاضل</div>
+        <div class="sb-credits-title" style="margin-top:6px;">ناهدة موسى اسماعيل</div>
     </div>
     <div class="sb-footer">
         <p>جامعة ديالى - قسم ضمان الجودة</p>
