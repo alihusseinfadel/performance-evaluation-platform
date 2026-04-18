@@ -1116,29 +1116,6 @@ elif page == "إدارة المنتسبين":
         if filtered:
             st.markdown(f"**إجمالي: {len(filtered)} منتسب**")
 
-            view_mode = st.radio("طريقة العرض", ["📋 جدول", "🪪 بطاقات"], horizontal=True, key="staff_view", label_visibility="collapsed")
-
-            if view_mode == "🪪 بطاقات":
-                for a in filtered:
-                    st.markdown(render_profile_card(a, D["affiliations"], D["certificates"], D["nicknames"],
-                                                     D["positions"], D["evaluations"], D["years"]),
-                                unsafe_allow_html=True)
-            else:
-                rows = []
-                for a in filtered:
-                    rows.append({
-                        "#": a["id"],
-                        "الاسم": a["name"],
-                        "الهاتف": a.get("phone", ""),
-                        "الشهادة": lookup_name(D["certificates"], a.get("certificate_id")),
-                        "اللقب العلمي": lookup_name(D["nicknames"], a.get("nickname_id")),
-                        "المنصب": lookup_name(D["positions"], a.get("position_id")),
-                        "الجهة": lookup_name(D["affiliations"], a.get("affiliation_id")),
-                    })
-                df = pd.DataFrame(rows)
-                st.dataframe(df, use_container_width=True, hide_index=True)
-
-            # Export — always build df for export
             rows = []
             for a in filtered:
                 rows.append({
@@ -1151,6 +1128,9 @@ elif page == "إدارة المنتسبين":
                     "الجهة": lookup_name(D["affiliations"], a.get("affiliation_id")),
                 })
             df = pd.DataFrame(rows)
+            st.dataframe(df, use_container_width=True, hide_index=True)
+
+            # Export
             excel_data = export_df_excel(df, "المنتسبين")
             if excel_data:
                 st.download_button("📥 تصدير إلى Excel", data=excel_data,
