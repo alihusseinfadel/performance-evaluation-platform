@@ -919,9 +919,18 @@ if global_search and global_search.strip():
     search_results = search_associates(D["associates"], global_search, D["affiliations"], D["certificates"], D["nicknames"], D["positions"])
     if search_results:
         st.markdown(f"**تم العثور على {len(search_results)} نتيجة لـ «{global_search}»**")
+        rows = []
         for a in search_results:
-            st.markdown(render_profile_card(a, D["affiliations"], D["certificates"], D["nicknames"], D["positions"], D["evaluations"], D["years"]),
-                        unsafe_allow_html=True)
+            rows.append({
+                "#": a["id"],
+                "الاسم": a["name"],
+                "الهاتف": a.get("phone", ""),
+                "الشهادة": lookup_name(D["certificates"], a.get("certificate_id")),
+                "اللقب العلمي": lookup_name(D["nicknames"], a.get("nickname_id")),
+                "المنصب": lookup_name(D["positions"], a.get("position_id")),
+                "الجهة": lookup_name(D["affiliations"], a.get("affiliation_id")),
+            })
+        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
     else:
         st.info(f"لا توجد نتائج لـ «{global_search}»")
     st.markdown("---")
